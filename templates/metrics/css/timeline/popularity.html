@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% load inline_file %}
+
+{% block css %}
+  {# TODO(kevinshen56714): remove this after redesigning the nav bar #}
+  <style>{% inline_file "/static/css/metrics.css" %}</style>
+{% endblock %}
+
+{% block preload %}
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block content %}
+  <chromedash-timeline-page 
+    type="css"
+    view="popularity">
+  </chromedash-timeline-page>
+{% endblock %}
