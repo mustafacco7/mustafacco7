@@ -1,0 +1,22 @@
+runtime: python310
+service: notifier
+
+handlers:
+- url: /tasks/detect-intent
+  script: auto
+  # Header checks prevent raw access to this handler.  Tasks have headers.
+
+- url: /tasks/email-subscribers
+  script: auto
+  # Header checks prevent raw access to this handler.  Tasks have headers.
+
+app_engine_apis: true
+
+# Set up VPC Access Connector for Redis in prod.
+vpc_access_connector:
+  name: projects/cr-status/locations/us-central1/connectors/redis-connector
+
+env_variables:
+  # Redis envs for prod
+  REDISHOST: '10.250.3.187'
+  REDISPORT: '6379'
