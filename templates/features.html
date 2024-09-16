@@ -1,0 +1,70 @@
+{% extends "_base.html" %}
+
+{% load inline_file %}
+{% load cache %}
+
+{% block rss %}
+  <link rel="alternate" type="application/rss+xml" href="https://chromestatus.com/features.xml" title="All features" />
+  {% cache TEMPLATE_CACHE_TIME rssfeed %}
+    {% for k,v in categories %}
+    <link rel="alternate" type="application/rss+xml"
+          href="https://chromestatus.com/features.xml?category={{v}}" title='"{{k}}" features'>
+    {% endfor %}
+  {% endcache %}
+{% endblock %}
+
+{% block css %}
+  {% cache TEMPLATE_CACHE_TIME featurescss %}
+    <style>{% inline_file "/static/css/features/features.css" %}</style>
+  {% endcache %}
+{% endblock %}
+
+{% block content %}
+  <div id="column-container">
+    <div id="drawer-column">
+      <h3>Filter By</h3>
+      {% cache TEMPLATE_CACHE_TIME chromedashmetadata %}
+        <!-- Use single quote here. The value is a json string with double quote. -->
+        <chromedash-metadata implstatuses='{{IMPLEMENTATION_STATUSES|safe}}'></chromedash-metadata>
+      {% endcache %}
+    </div>
+    <div id="content-column">
+      <div id="subheader">
+        <div class="feature-count">
+          <h2>Features: <span class="num-features"></span></h2>
+        </div>
+        <div class="search">
+          <input type="search" placeholder="Filter" disabled>
+          <button class="legend-button">
+            <iron-icon icon="chromestatus:help"></iron-icon>
+          </button>
+        </div>
+      </div>
+      <chromedash-featurelist
+        {% if user %} signedInUser="{{user.email}}" {% endif %}
+        {% if user.can_edit_all %}isSiteEditor{% endif %}
+        {% if user %} editableFeatures="{{user.editable_features}}" {% endif %}
+        {% if user.can_approve %}canApprove{% endif %}>
+      </chromedash-featurelist>
+    </div>
+  </div>
+{% endblock %}
+
+{% block overlay %}
+  <chromedash-legend></chromedash-legend>
+{% endblock %}
+
+{% block js %}
+  <script nonce="{{nonce}}">
+    (function() {
+      'use strict';
+      // Get values from server. used in /static/js/features-page.js
+      const VIEWS = {
+        vendors: {{VENDOR_VIEWS|safe}},
+        webdevs: {{WEB_DEV_VIEWS|safe}},
+        standards: {{STANDARDS_VALS|safe}}
+      };
+      {% inline_file "/static/js/features-page.min.js" %}
+    })();
+  </script>
+{% endblock %}
