@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% block page_title %}{{ feature.name }} - {% endblock %}
+
+{% block content %}
+  <chromedash-guide-editall-page 
+    featureId="{{ feature_id }}"
+    flatForms="{{ flat_forms }}">
+  </chromedash-guide-editall-page>
+{% endblock %}

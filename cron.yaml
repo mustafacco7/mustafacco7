@@ -1,0 +1,19 @@
+cron:
+- description: retrieve from chromium.googlesource.com chromium histograms
+  url: /cron/histograms
+  schedule: every day 04:00
+- description: retrieve from UMA Cloud Storage data gathered yesterday
+  url: /cron/metrics
+  schedule: every 6 hours synchronized
+- description: update list of Blink components
+  url: /cron/update_blink_components
+  schedule: every day 04:30
+- description: sort metrics and load into memcache without request time limits
+  url: /data/featurepopularity?refresh=1
+  schedule: every 30 minutes synchronized
+- description: Trigger a DataStore export for backup.
+  url: /cron/export_backup
+  schedule: every day 03:00
+- description: Send reminders to verify the accuracy of feature data.
+  url: /cron/send_accuracy_notifications
+  schedule: every monday 09:00
