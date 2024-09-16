@@ -1,0 +1,75 @@
+{
+  "name": "chromestatus-dashboard",
+  "description": "Chrome platform status - chromestatus.com",
+  "homepage": "https://www.chromestatus.com",
+  "private": true,
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "deps": "pip install -t lib -r requirements.txt",
+    "test": "python -m unittest discover -p *_test.py -s tests -b",
+    "lint": "gulp lint-fix && lit-analyzer \"static/elements/chromedash-!(featurelist)*.js\"",
+    "build": "gulp",
+    "watch": "gulp watch",
+    "deploy": "npm run build && ./scripts/deploy_site.sh `date +%Y-%m-%d`",
+    "staging": "npm run build && ./scripts/deploy_site.sh `date +%Y-%m-%d` cr-status-staging",
+    "start": "npm run build && ./scripts/start_server.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleChrome/chromium-dashboard"
+  },
+  "bugs": {
+    "url": "https://github.com/GoogleChrome/chromium-dashboard/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
+    "acorn": ">=6.4.1",
+    "babel-eslint": "^10.0.3",
+    "del": "^3.0.0",
+    "eslint": "^5.2.0",
+    "eslint-config-google": "^0.9.1",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-eslint-if-fixed": "^1.0.0",
+    "gulp-license": "^1.1.0",
+    "gulp-load-plugins": "^1.6.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-util": "^3.0.7",
+    "http2-push-manifest": "^1.0.0",
+    "kind-of": ">=6.0.3",
+    "lighthouse-ci": "https://github.com/ebidel/lighthouse-ci",
+    "lit-analyzer": "^1.1.9",
+    "lodash.template": ">=4.5.0",
+    "minimist": ">=0.2.1",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.17.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.1.0",
+    "rollup-plugin-lit-css": "^2.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sw-precache": "^5.2.1",
+    "sw-toolbox": "^3.6.0"
+  },
+  "dependencies": {
+    "@polymer/app-layout": "^3.1.0",
+    "@polymer/iron-icon": "^3.0.1",
+    "@polymer/iron-iconset-svg": "^3.0.1",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
+    "@polymer/paper-ripple": "^3.0.1",
+    "@polymer/paper-styles": "^3.0.1",
+    "lit-element": "^2.1.0",
+    "lit-html": "^1.1.2"
+  }
+}

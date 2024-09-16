@@ -1,0 +1,74 @@
+{% extends "_base.html" %}
+
+{% load inline_file %}
+{% load cache %}
+
+{% block rss %}
+  <link rel="alternate" type="application/rss+xml" href="https://www.chromestatus.com/features.xml" title="All features" />
+  {% cache TEMPLATE_CACHE_TIME rssfeed %}
+    {% for k,v in categories %}
+    <link rel="alternate" type="application/rss+xml"
+          href="https://www.chromestatus.com/features.xml?category={{v}}" title='"{{k}}" features'>
+    {% endfor %}
+  {% endcache %}
+{% endblock %}
+
+{% block css %}
+  {% cache TEMPLATE_CACHE_TIME featurescss %}
+    <style>{% inline_file "/static/css/features/features.css" %}</style>
+  {% endcache %}
+{% endblock %}
+
+{% block subheader %}
+  <div id="subheader">
+    <div class="feature-count">
+      <h2>Features: <span class="num-features"></span></h2>
+    </div>
+    <div class="search">
+      <input type="search" placeholder="Filter" disabled>
+      <button class="legend-button"><iron-icon icon="chromestatus:help"></iron-icon></button>
+    </div>
+    <div class="actionlinks">
+      <a id="features-subscribe-button" class="blue-button no-push-notifications" title="Sends a push notification when new features are added."><iron-icon icon="chromestatus:notifications-off"></iron-icon><span>Subscribe</span></a>
+      {% if user.can_edit %}
+        <a href="/admin/features/new" class="blue-button" title="Adds a new feature to the site"><iron-icon icon="chromestatus:add-circle-outline"></iron-icon><span>Add new feature</span></a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block drawer %}
+  <h3>Chrome versions</h3>
+  {% cache TEMPLATE_CACHE_TIME chromedashmetadata %}
+    <!-- Use single quote here. The value is a json string with double quote. -->
+    <chromedash-metadata implstatuses='{{IMPLEMENTATION_STATUSES|safe}}'></chromedash-metadata>
+  {% endcache %}
+{% endblock %}
+
+{% block overlay %}
+  <chromedash-legend></chromedash-legend>
+{% endblock %}
+
+{% block content %}
+  <chromedash-featurelist
+    {% if user %}signedin{% endif %}
+    loginurl="{{login.1}}"
+    {% if user.can_edit %}canedit{% endif %}
+    ></chromedash-featurelist>
+{% endblock %}
+
+{% block js %}
+  <script>
+    (function() {
+      'use strict';
+      // Get values from server. used in /static/js/features-page.js
+      const VIEWS = {
+        vendors: {{VENDOR_VIEWS|safe}},
+        webdevs: {{WEB_DEV_VIEWS|safe}},
+        standards: {{STANDARDS_VALS|safe}}
+      };
+      {% inline_file "/static/js/notifications.min.js" %}
+      {% inline_file "/static/js/features-page.min.js" %}
+    })();
+  </script>
+{% endblock %}

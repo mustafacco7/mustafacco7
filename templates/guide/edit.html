@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/forms.css">
+<style>
+#metadata-buttons {
+  margin-left: 20px;
+}
+#metadata-buttons div {
+  margin-top: 20px;
+}
+</style>
+{% endblock %}
+
+{% block subheader %}
+<div id="subheader" style="display:block">
+  <a style="float:right"
+     href="/admin/features/edit/{{ feature_id }}">Use old UI</a>
+  <span style="float:right; margin-right: 2em">Beta:
+  <a href="https://github.com/GoogleChrome/chromium-dashboard/issues/new?labels=Feedback&template=process-and-guide-ux-feedback.md"
+     target="_blank">Process and UI feedback</a></span>
+  <h2>Edit feature: {{ feature.name }}</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% include "guide/metadata.html" %}
+
+<section style="margin: 1em 0 1em 0; max-width: 67em">
+  <chromedash-process-overview
+    title='Blink Process'
+    feature='{{ feature_json }}'
+    process='{{ process_json }}'
+    progress='{{ progress_so_far }}'>
+  </chromedash-process-overview>
+</section>
+
+<section style="margin: 1em 0 8em 0">
+  Please see the
+ <a href="https://www.chromium.org/blink/launching-features"
+    target="_blank">Launching features</a>
+ page for process instructions.
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/admin/process_overview_form.min.js"></script>
+{% endblock %}

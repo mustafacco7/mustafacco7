@@ -1,0 +1,75 @@
+// Note this is not a partial include because x-link uses shared.css directly.
+
+@import "vars";
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h1, h2, h3, h4 {
+  font-weight: 300;
+}
+h1 {
+  font-size: 30px;
+}
+h2, h3, h4 {
+  color: #444;
+}
+h2 {
+  font-size: 25px;
+}
+h3 {
+  font-size: 20px;
+}
+a {
+  text-decoration: none;
+  color: $chromium-color-center;
+  &:hover {
+    text-decoration: underline;
+    color: $chromium-color-dark;
+  }
+}
+
+b {
+  font-weight: 600;
+}
+
+input:not([type="submit"]), textarea {
+  border: 1px solid $bar-border-color;
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+button, input[type="submit"], .button {
+  display: inline-block;
+  padding: 4px 16px;
+  background: inherit;
+  border: 0;
+  border-radius: 4px;
+  color: #444;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  font-size: 10pt;
+}
+
+button.primary, input[type="submit"], .button.primary {
+  background: $material-primary-button;
+  color: white;
+  font-weight: bold;
+}
+
+button:not(:disabled):hover {
+  border-color: $gray-4;
+}
+
+.comma::after {
+  content: ',';
+  margin-right: .2em;
+}
+
+.no-web-share {
+  display: none;
+}
