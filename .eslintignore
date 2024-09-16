@@ -1,0 +1,4 @@
+**/node_modules/**
+http2push/
+static/dist/
+**/*.min.js
