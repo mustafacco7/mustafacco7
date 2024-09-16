@@ -1,0 +1,31 @@
+cron:
+- description: retrieve from chromium.googlesource.com chromium histograms
+  url: /cron/histograms
+  schedule: every day 04:00
+- description: retrieve from UMA Cloud Storage data gathered yesterday
+  url: /cron/metrics
+  schedule: every 6 hours synchronized
+- description: update list of Blink components
+  url: /cron/update_blink_components
+  schedule: every day 04:30
+- description: sort metrics and load into memcache without request time limits
+  url: /data/featurepopularity?refresh=1
+  schedule: every 30 minutes synchronized
+- description: Trigger a DataStore export for backup.
+  url: /cron/export_backup
+  schedule: every day 03:00
+- description: Send reminders to verify the accuracy of feature data.
+  url: /cron/send_accuracy_notifications
+  schedule: every monday 09:00
+- description: Notify any users that have been inactive for 6 months.
+  url: /cron/warn_inactive_users
+  schedule: 1st monday of month 9:00
+- description: Removes any users that have been inactive for 9 months.
+  url: /cron/remove_inactive_users
+  schedule: 1st monday of month 9:00
+- description: Copy over comment entities to new activity entities
+  url: /cron/schema_migration_comment_activity
+  schedule: 1 of jan 00:00
+- description: Copy over deprecated standardization field
+  url: /cron/write_standard_maturity
+  schedule: 1 of jan 00:00
