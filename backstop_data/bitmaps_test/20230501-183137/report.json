@@ -1,0 +1,42 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_BackstopJS_Homepage_0__0_phone.png",
+        "test": "../bitmaps_test/20230501-183137/backstop_default_BackstopJS_Homepage_0__0_phone.png",
+        "selector": "",
+        "fileName": "backstop_default_BackstopJS_Homepage_0__0_phone.png",
+        "label": "BackstopJS Homepage",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.1,
+        "url": "https://garris.github.io/BackstopJS/",
+        "referenceUrl": "",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "engineErrorMsg": "require() of ES Module /usr/local/google/home/dlaliberte/chromium-dashboard/backstop_data/engine_scripts/playwright/onBefore.js from /usr/local/google/home/dlaliberte/.nvm/versions/node/v18.11.0/lib/node_modules/backstopjs/core/util/runPlaywright.js not supported.\nonBefore.js is treated as an ES module file as it is a .js file whose nearest parent package.json contains \"type\": \"module\" which declares all .js files in that package scope as ES modules.\nInstead rename onBefore.js to end in .cjs, change the requiring code to use dynamic import() which is available in all CommonJS modules, or change \"type\": \"module\" to \"type\": \"commonjs\" in /usr/local/google/home/dlaliberte/chromium-dashboard/package.json to treat all .js files as CommonJS (using .mjs for all ES modules instead).\n",
+        "error": "Reference file not found /usr/local/google/home/dlaliberte/chromium-dashboard/backstop_data/bitmaps_reference/backstop_default_BackstopJS_Homepage_0__0_phone.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_BackstopJS_Homepage_0__1_tablet.png",
+        "test": "../bitmaps_test/20230501-183137/backstop_default_BackstopJS_Homepage_0__1_tablet.png",
+        "selector": "",
+        "fileName": "backstop_default_BackstopJS_Homepage_0__1_tablet.png",
+        "label": "BackstopJS Homepage",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.1,
+        "url": "https://garris.github.io/BackstopJS/",
+        "referenceUrl": "",
+        "expect": 0,
+        "viewportLabel": "tablet",
+        "engineErrorMsg": "require() of ES Module /usr/local/google/home/dlaliberte/chromium-dashboard/backstop_data/engine_scripts/playwright/onBefore.js from /usr/local/google/home/dlaliberte/.nvm/versions/node/v18.11.0/lib/node_modules/backstopjs/core/util/runPlaywright.js not supported.\nonBefore.js is treated as an ES module file as it is a .js file whose nearest parent package.json contains \"type\": \"module\" which declares all .js files in that package scope as ES modules.\nInstead rename onBefore.js to end in .cjs, change the requiring code to use dynamic import() which is available in all CommonJS modules, or change \"type\": \"module\" to \"type\": \"commonjs\" in /usr/local/google/home/dlaliberte/chromium-dashboard/package.json to treat all .js files as CommonJS (using .mjs for all ES modules instead).\n",
+        "error": "Reference file not found /usr/local/google/home/dlaliberte/chromium-dashboard/backstop_data/bitmaps_reference/backstop_default_BackstopJS_Homepage_0__1_tablet.png"
+      },
+      "status": "fail"
+    }
+  ],
+  "id": "backstop_default"
+}
